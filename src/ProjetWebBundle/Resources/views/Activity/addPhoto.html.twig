@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block content %}
-    <h1 style="text-align: center">Liste des photos de l'activité {{ activity.activityName }}</h1>
+    <h1 style="text-align: center">{{ activity.activityName }}</h1>
     </br>
 
     <h2>Date de l'activité : {{ activity.date|date("m/d/Y")|date('Y-m-d') }}</h2>

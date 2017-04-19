@@ -37,7 +37,8 @@
                                 {% endif %}
                             </td>
                             <td>{{ activity.price }}</td>
-
+                            <td><a class="btn btn-primary" href="{{ path('edit_activity', {'activityId' : activity.id}) }}">modif</a>
+                                <a class="btn btn-primary" href="{{ path('delete_activity', {'activityId' : activity.id}) }}">delete</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

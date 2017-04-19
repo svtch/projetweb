@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <h1>Bienvenue sur le site OFFICIEL du BDE de l'Exia.Cesi Strasbourg</h1>
+    <h1>Dernieres activités publiées</h1>
+    {% for activity in listValidActivity %}
+        <h2><strong> {{ activity.activityName }} : {{ activity.date|date("m/d/Y")|date('Y-m-d') }}</strong> <a class="btn btn-primary" href="{{ path('add_photo', {'activityId' : activity.getId()}) }}">Détails de l'activité</a></h2>
+        <h4><br></h4>
+        <h4>{{ activity.description }}</h4>
+
+        {% endfor %}
+    </br>
+    <h4><a class="btn btn-primary" href="{{ path('list_Valid_activity') }}">Liste des activitées</a></h4>
+
+{% endblock %}
