@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <center><h3>Ajouter une activité</h3></center>
+    <div class="well">
+        <div class="row">
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <div class="col-lg-6">
+                {{ form_row(form.activityName) }}
+                {{ form_row(form.date) }}
+
+            </div>
+            <div class="col-lg-6">
+                {{ form_row(form.description) }}
+                {{ form_row(form.price) }}
+                <input type="submit" class="btn btn-primary" value="Send"/>
+
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

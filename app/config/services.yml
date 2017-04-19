@@ -4,7 +4,7 @@ parameters:
     #parameter_name: value
 
 services:
-  app.form.registration:
+  projetweb.form.registration:
               class: ProjetWebBundle\Form\RegistrationType
               tags:
                   - { name: form.type, alias: projetweb_user_registration }

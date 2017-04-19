@@ -36,6 +36,12 @@ class User extends BaseUser
 
     protected $phonenumber;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+
+    protected $grade = 1;
+
     public function __construct()
     {
         parent::__construct();
@@ -112,5 +118,29 @@ class User extends BaseUser
     public function getPhonenumber()
     {
         return $this->phonenumber;
+    }
+
+    /**
+     * Set grade
+     *
+     * @param integer $grade
+     *
+     * @return User
+     */
+    public function setGrade($grade)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return integer
+     */
+    public function getGrade()
+    {
+        return $this->grade;
     }
 }

@@ -1,0 +1,3 @@
+form_activity:
+    path:     /activity/add
+    defaults: { _controller: ProjetWebBundle:Activity:createActivity }

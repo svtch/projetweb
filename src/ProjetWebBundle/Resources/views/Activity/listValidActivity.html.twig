@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <center><h3>liste des activitées validées</h3></center>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="orderData">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nom de l'activité</th>
+                        <th>Date de l'évenement</th>
+                        <th>Description</th>
+                        <th>Etat de l'activité</th>
+                        <th>Prix</th>
+                        <th></th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for activity in listValidActivity %}
+                        <tr>
+                            <td> {{ activity.id }}</td>
+                            <td>{{ activity.activityName }}</td>
+                            <td>{{ activity.date|date("m/d/Y")|date('Y-m-d') }}</td>
+                            <td>{{ activity.description }}</td>
+                            <td>
+
+                                {% if activity.state == 1 %}
+                                    <span class="label label-warning">en attente de validation</span>
+
+                                {% elseif activity.state == 2 %}
+                                    <span class="label label-success">validé</span>
+
+                                {% else %}
+                                    <span class="label label-danger">refusé</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ activity.price }}</td>
+                            <td><a href="{{ path('add_photo', {'activityId' : activity.id}) }}">Ajouter une photo</a></td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

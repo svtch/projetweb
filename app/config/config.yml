@@ -77,6 +77,4 @@ fos_user:
     from_email:
         address: mathias.haegel@viacesi.fr
         sender_name: svtch
-    registration:
-            form:
-                name: projetweb_user_registration
+
