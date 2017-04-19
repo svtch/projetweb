@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <h1 style="text-align: center">Galerie photo</h1>
+    {% for photo in listPhotos %}
+        <div style="text-align: center"><img style="width:300px;
+height:300px;" src="{{ asset('uploads/' ~ photo.pictureFile) }}" />
+            <p style="font-style: italic;">{{ photo.descriptionPhoto }}</p>
+            <p style="font-style: italic;">{{ photo.activity.getActivityName() }}</p>
+        </div>
+        {% endfor %}
+{% endblock %}

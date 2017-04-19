@@ -8,6 +8,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    picture_directory: '%kernel.root_dir%/../web/uploads/'
 
 framework:
     #esi: ~
@@ -77,4 +78,12 @@ fos_user:
     from_email:
         address: mathias.haegel@viacesi.fr
         sender_name: svtch
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+            photo:
+                uri_prefix: /uploads/
+                upload_destination: '%kernel.root_dir%/../web/uploads/'
+                namer: vich_uploader.namer_uniqid
 

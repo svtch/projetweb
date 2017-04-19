@@ -1,23 +1,27 @@
 {% extends "::base.html.twig" %}
 
 {% block content %}
-    <center><h3>liste des photos</h3></center>
-    <p>Nom de l'activité : {{ activity.activityName }}</p>
+    <h1 style="text-align: center">Liste des photos de l'activité {{ activity.activityName }}</h1>
+    </br>
 
-    <p>Date de l'activité : {{ activity.date|date("m/d/Y")|date('Y-m-d') }}</p>
-    <p>Plus de détails sur activité: {{ activity.description }}</p>
+    <h2>Date de l'activité : {{ activity.date|date("m/d/Y")|date('Y-m-d') }}</h2>
+    </br>
+    <h2>Détails de activité : {{ activity.description }}</h2>
+    </br>
      {% if activity.price == 0 %}
-         <p>
-             L'activité est gratuite</p>
+         <h2>
+             L'activité est gratuite</h2>
          {% else %}
-             <p> Le prix est de :
-        {{ activity.price }}</p>
+             <h2> La participation de l'activité coute :
+        {{ activity.price }} €</h2>
      {%  endif %}
 
-    <h3>Photo de l'activité :</h3>
+
     {% for photo in photos %}
-        <img src="{{ asset(photo.getWebPath()) }}" />
-        <p>{{ photo.descriptionPhoto }}</p>
+        <div style="text-align: center"><img style="width:300px;
+height:300px;" src="{{ asset('uploads/' ~ photo.pictureFile) }}" />
+        <p style="font-style: italic;">{{ photo.descriptionPhoto }}</p>
+        </div>
 
 
     {% endfor %}
@@ -28,8 +32,11 @@
             {{ form_start(form) }}
             {{ form_errors(form) }}
             <div class="col-lg-12">
-                {{ form_row(form.file) }}
-                {{ form_row(form.descriptionPhoto) }}
+
+                {{ form_row(form.pictureFile) }}
+                {{ form_widget (form) }}
+
+
                 <input type="submit" class="btn btn-primary" value="Send"/>
 
             </div>

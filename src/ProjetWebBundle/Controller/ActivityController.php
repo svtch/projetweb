@@ -39,6 +39,7 @@ class ActivityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($activity);
             $em->flush();
+            return $this->redirectToRoute('list_Valid_activity');
         }
         return $this->render('ProjetWebBundle:Activity:addActivity.html.twig', array(
             'form' => $form->createView(),));

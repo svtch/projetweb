@@ -23,6 +23,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 class PhotosType extends AbstractType
 {
@@ -33,14 +35,14 @@ class PhotosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pictureName')
-            ->add('file'
-            )
+
+
 
 
             ->add('descriptionPhoto'
                 , null,["error_bubbling" => true, "label" => "Description de la photo"]
-            );
+            )
+            ->add('pictureFile', FileType::class,  array('label' => 'Photo'));
 
 
 
@@ -53,5 +55,7 @@ class PhotosType extends AbstractType
             'data_class' => 'ProjetWebBundle\Entity\Photos'
         ));
     }
+
+
 
 }

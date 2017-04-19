@@ -37,22 +37,43 @@ class PhotoController extends Controller
         $photo = new Photos();
 
         $form = $this->get('form.factory')->create(PhotosType::class, $photo);
+        $form->handleRequest($request);
 
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $photo->getPictureFile();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('picture_directory'),
+                $fileName
+            );
+            $photo->setPictureFile($fileName);
+
+
             $em = $this->getDoctrine()->getManager();
-            
 //            We use the function addLine on Bill.php to add a line
             $activity2->addPhoto($photo);
+
             $em->persist($activity2);
             $em->flush();
-            return $this->render('ProjetWebBundle:Activity:addPhoto.html.twig', ['activity' => $activity2, 'photos' => $activity, 'form' => $form->createView()]);
-
+            return $this->redirectToRoute('add_photo', array('activityId' => $activity2->getId()) );
             //$this->getFlashBag()->add('success', 'Le détail a bien été enregistré');
         }
 
 
         return $this->render('ProjetWebBundle:Activity:addPhoto.html.twig', ['activity' => $activity2, 'photos' => $activity, 'form' => $form->createView()]);
+    }
+
+
+    /**
+     * @Route("/photo/", name="list_photos")
+     */
+    public function galeriePhotoAction(){
+        $listPhotos = $this->getDoctrine()->getRepository("ProjetWebBundle:Photos")->findAll();
+        return $this->render('ProjetWebBundle:Activity:listPhotos.html.twig', array(
+            'listPhotos' => $listPhotos
+        ));
     }
 
 }

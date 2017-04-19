@@ -1,52 +1,36 @@
 {% extends "::base.html.twig" %}
 
 {% block content %}
-    <center><h3>liste des activitées validées</h3></center>
+
+    <h1 style="text-align: center">Liste des activitées validées</h1>
     <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped" id="orderData">
-                    <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Nom de l'activité</th>
-                        <th>Date de l'évenement</th>
-                        <th>Description</th>
-                        <th>Etat de l'activité</th>
-                        <th>Prix</th>
-                        <th></th>
-
-
-                    </tr>
-                    </thead>
-                    <tbody>
+        <div class="col-lg-12">
 
                     {% for activity in listValidActivity %}
-                        <tr>
-                            <td> {{ activity.id }}</td>
-                            <td>{{ activity.activityName }}</td>
-                            <td>{{ activity.date|date("m/d/Y")|date('Y-m-d') }}</td>
-                            <td>{{ activity.description }}</td>
-                            <td>
+                            <h2><strong> {{ activity.activityName }} : {{ activity.date|date("m/d/Y")|date('Y-m-d') }}</strong></h2>
+                            <h4><br></h4>
+                            <h4>{{ activity.description }}</h4>
+                        {% if activity.price == 0 %}
+                            <h4> <p>
+                                L'activité est <strong>gratuite</strong></p></h4>
+                        {% else %}
+                           <h4> <p> Le prix est de :
+                                {{ activity.price }} €</p></h4>
+                            {%  endif %}
 
-                                {% if activity.state == 1 %}
-                                    <span class="label label-warning">en attente de validation</span>
 
-                                {% elseif activity.state == 2 %}
-                                    <span class="label label-success">validé</span>
 
-                                {% else %}
-                                    <span class="label label-danger">refusé</span>
-                                {% endif %}
-                            </td>
-                            <td>{{ activity.price }}</td>
-                            <td><a href="{{ path('add_photo', {'activityId' : activity.id}) }}">Ajouter une photo</a></td>
 
-                        </tr>
+                        <h4><a class="btn btn-primary" href="{{ path('add_photo', {'activityId' : activity.id}) }}">Ajouter une photo</a> <a class="btn btn-primary" href="">Participer à l'activité</a></h4>
+
+                        <br>
+
                     {% endfor %}
-                    </tbody>
-                </table>
+
+            <h4><a class="btn btn-primary" href="{{ path('create_activity') }}">Soumettre une activité</a></h4>
+
             </div>
         </div>
-    </div>
+
+
 {% endblock %}
