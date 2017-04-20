@@ -116,7 +116,7 @@ class ActivityController extends Controller
             $this->getFlashBag()->add('error', 'invalid id');
         }
         // On assigne l'id de la facture a une autre variable pour pouvoir le returner
-        $activityIdId = $activity->getId();
+        $activityId = $activity->getId();
         // On supprime l'objet
         $em->remove($activity);
         $em->flush();

@@ -23,7 +23,7 @@ class Photos
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ProjetWebBundle\Entity\Activity", inversedBy="photos", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ProjetWebBundle\Entity\Activity", inversedBy="photos", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
      */
 
